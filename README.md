@@ -18,7 +18,7 @@ Synthetic SaaS subscription dataset generated in Python with:
 
 All data is stored as Parquet and queried via DuckDB.
 
-## Evaluation Design
+# Evaluation Design
 
 ## LLM Configuration
 Model: Claude Sonnet 4.5
@@ -59,7 +59,7 @@ All outputs were:
 - Explicit prompts improved execution stability, but still exhibited logical inconsistencies under more complex metrics.
 - Detailed prompts consistently aligned with specification, preserved cohort integrity, and satisfied reconciliation constraints. However, LLM assumptions could still not be fully predicted in all cases which can still introduce logical errors in more complex tests.
 
-# Failure Mode Examples:
+## Failure Mode Examples:
 ### 1. Semantic Drift
 Issue: Undocumented assumptions added to queries
 Example: LLM added `status = 'active'` filter for historical revenue calculations, incorrectly excluding churned customers and underreporting revenue
@@ -89,9 +89,13 @@ Only at the “Detailed” prompt level did outputs consisitently align with the
 ## Repository Structure
 llm-saas-analytics-eval/
 ├── data/              # Synthetic parquet files
+
 ├── prompts/           # Prompt variations by metric and detail level
+
 ├── scripts/           # Data generation and evaluation scripts
+
 ├── results/           # Evaluation outputs 
+
 └── saas_analytics.duckdb
 
 ## Potential Next Steps
@@ -99,7 +103,7 @@ llm-saas-analytics-eval/
 - Test additional prompt engineering techniques 
 - Add automated retry/refinement loops
 
-## Additional Considerations
+# Additional Considerations
 ## LLM API Token Limits
 - Increasing the token limit above reasonable limits for the complexity of prompts and tests did not materially change SQL logic or assumptions used in the LLM response.
 - Token limits only impacted detail of description and wording, and the LLM was not able to use additional tokens in budget to fix semantic errors.
