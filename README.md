@@ -4,7 +4,7 @@
 
 This project evaluates the reliability of large language models (LLMs) in generating executable and logically correct SQL for realistic core SaaS metrics. The tests and synthetic data set aim to recreate realistic tasks an analyst or analytics engineer may encounter.
 
-Using synthetic SaaS subscription datasets designed to simulate part of a complex corporate database, I compare Claude Sonnet 4.5–generated SQL against a DuckDB ground-truth implementation across multiple financial and retention metrics. The primary goal is to measure the effectiveness, failure modes, and logical correctness of LLM in realistic analytical tasks under various levels of prompt detail.
+Using synthetic SaaS subscription datasets designed to simulate part of a complex corporate database, I compare Claude Sonnet 4.5's generated SQL against a DuckDB ground-truth implementation across multiple financial and retention metrics. The primary goal is to measure the effectiveness, failure modes, and logical correctness of LLM in realistic analytical tasks under various levels of prompt detail.
 
 ## Dataset
 Synthetic SaaS subscription dataset generated in Python with:
