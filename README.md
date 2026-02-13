@@ -21,9 +21,12 @@ All data is stored as Parquet and queried via DuckDB.
 # Evaluation Design
 
 ## LLM Configuration
+
 Model: Claude Sonnet 4.5
-Role: Analytics engineer working with a SaaS dataset
-Context: Full schema with available tables and fields within the tables. 
+
+Role: Analytics engineer working with a SaaS dataset (provided in all prompts).
+
+Context: Full schema with available tables and fields within the tables (provided in all prompts). 
 
 Minimal: Single-sentence task definition
 - Minimal business context or edge case handling
