@@ -80,7 +80,7 @@ Issue: LLM attempting to expand scope beyond specifications
 Example: Adding unrequested aggregation rows, introducing complex UNION structures not needed for the task
 
 ## Conclusion
-Across 15 prompt variations and 4 core SaaS business tests, level of prompt detail significantly affected the quality of logical output. At the “Detailed” prompt level, Claude’s output returned the correct values for Tests 1 through 4. However, Test 3 and Test 4 can be considered logically fragile and not optimal. “Minimal” and “Explicit” prompts produced unreliable output with significantly more room for inaccurate model assumptions and logical errors. 
+Across 15 prompt variations and 4 core SaaS business tests, level of prompt detail significantly affected the quality of logical output. At the “Detailed” prompt level, Claude’s output returned the correct values for Tests 1 through 4. However, Test 3 and Test 4 can be considered logically fragile and not optimal. Across the majority of tests, “Minimal” and “Explicit” prompts produced unreliable output with significantly more room for inaccurate model assumptions and logical errors. 
 
 Only at the “Detailed” prompt level did outputs consisitently align with the defined business logic. However, to produce a “Detailed” level prompt, the user required a strong understanding of specific assumptions and risk points with the selected LLM and data set. This may be unrealistic for a user working with a specific LLM or data set for the first time. This creates a "cold-start" problem: users working with a new LLM or dataset for the first time may lack the domain knowledge needed to write sufficiently detailed prompts, leading to silently incorrect analytical outputs.
 
