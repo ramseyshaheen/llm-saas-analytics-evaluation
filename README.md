@@ -88,6 +88,7 @@ Only at the “Detailed” prompt level did outputs consisitently align with the
 
 ## Repository Structure
 llm-saas-analytics-eval/
+
 ├── data/              # Synthetic parquet files
 
 ├── prompts/           # Prompt variations by metric and detail level
