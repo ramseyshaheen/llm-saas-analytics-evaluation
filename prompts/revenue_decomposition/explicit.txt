@@ -1,0 +1,58 @@
+Goal: 
+Write a SQL query to decompose the change in Monthly Recurring Revenue (MRR)
+from January 1, 2024 to January 31, 2024 into the following components:
+
+- starting_mrr
+- expansion_mrr
+- contraction_mrr
+- churn_mrr
+- ending_mrr
+
+Definitions:
+
+1) Cohort:
+   Only include customers who had at least one active subscription on
+   January 1, 2024.
+   New customers acquired after January 1 must be excluded.
+
+2) Active subscription logic:
+   A subscription is active on a given date if:
+   start_date <= that date
+   AND (end_date IS NULL OR end_date > that date)
+
+3) Starting MRR:
+   Sum of monthly_price across all active subscriptions for the cohort
+   on January 1, 2024.
+
+4) Ending MRR:
+   Sum of monthly_price across all active subscriptions for the SAME cohort
+   on January 31, 2024.
+
+5) Expansion:
+   For cohort customers whose January 31 MRR is greater than their January 1 MRR,
+   include only the positive difference.
+
+6) Contraction:
+   For cohort customers whose January 31 MRR is less than their January 1 MRR
+   but greater than zero, include only the absolute decrease.
+
+7) Churn:
+   For cohort customers whose January 31 MRR is zero,
+   include their full January 1 MRR.
+
+Requirements:
+
+- Return a single row with the five columns listed above.
+- Do NOT include new customer revenue.
+- The result must reconcile:
+  starting_mrr + expansion_mrr - contraction_mrr - churn_mrr = ending_mrr
+
+Rules:
+- Revenue should be calculated using plan-level monthly prices.
+- A subscription is active on a date if start_date <= date AND (end_date IS NULL OR end_date >= date).
+- Customers may have multiple subscriptions.
+
+Please:
+1. Write the SQL query.
+2. Explain the logic.
+3. Ensure the components reconcile to the total revenue change.

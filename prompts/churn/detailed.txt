@@ -1,0 +1,25 @@
+You are an analytics engineer asked to calculate logo churn for January 2024.
+
+Available table:
+- subscriptions(subscription_id, customer_id, plan_id, start_date, end_date, status)
+
+Business framing:
+- Logo churn measures customer loss, not revenue loss.
+- A customer is considered churned only if they have zero active subscriptions at the end of the period.
+
+Metric definition:
+- Cohort = customers active on 2024-01-01.
+- End-of-period date = 2024-01-31.
+- A subscription is active on a date if:
+  - start_date is on or before the date, and
+  - end_date is NULL or after the date.
+
+Evaluation rules:
+- Churn must be evaluated at the customer level, not the subscription level.
+- Customers with any active subscription at the end of the month are NOT churned.
+- New customers who were not active on 2024-01-01 must be excluded.
+
+Please do the following:
+1. Describe in plain language how you would identify churned customers.
+2. Write the SQL query to calculate logo churn.
+3. Explain how your query avoids double-counting or misclassification.

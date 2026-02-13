@@ -1,0 +1,17 @@
+Definition:
+- Net Revenue Retention (NRR) for January 2024 measures how recurring revenue from existing customers changes over the month.
+- The cohort consists of customers who were active on 2024-01-01.
+- NRR includes expansion and contraction but excludes revenue from new customers.
+- Customers who fully churn contribute $0 to end-of-period revenue.
+
+Rules:
+- Revenue should be calculated using plan-level monthly prices.
+- A subscription is active on a date if:
+  - start_date <= the date, and
+  - end_date is NULL or end_date >= the date.
+- Customers may have multiple subscriptions; all active subscriptions should be included.
+
+Please:
+1. Write the SQL query to calculate NRR for January 2024.
+2. Explain the logic.
+3. State any assumptions.

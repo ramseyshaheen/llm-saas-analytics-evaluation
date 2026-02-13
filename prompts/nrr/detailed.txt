@@ -1,0 +1,23 @@
+Business framing:
+- NRR measures how much recurring revenue is retained from an existing customer cohort over time.
+- It captures expansion, contraction, and churn.
+- Revenue from customers who were not active at the start of the period must be excluded.
+
+Metric definition:
+- Cohort = customers active on 2024-01-01.
+- Start-of-period revenue = recurring revenue from cohort customers as of 2024-01-01.
+- End-of-period revenue = recurring revenue from the SAME cohort customers as of 2024-01-31.
+- Customers who churn during the month contribute $0 to end-of-period revenue.
+
+Evaluation rules:
+- Revenue must be calculated using plan-level monthly prices.
+- A subscription is active on a date if:
+  - start_date is on or before the date, and
+  - end_date is NULL or after the date.
+- Customers with multiple active subscriptions should have all subscription revenue summed.
+- New customers who joined after 2024-01-01 must be excluded entirely.
+
+Please do the following:
+1. Describe in plain language how you would calculate NRR.
+2. Write the SQL query.
+3. Explain how your query ensures cohort consistency and excludes new revenue.

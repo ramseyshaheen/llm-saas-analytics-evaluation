@@ -1,0 +1,82 @@
+You are an analytics engineer decomposing revenue change for a SaaS company.
+
+Your task is to decompose the change in Monthly Recurring Revenue (MRR)
+between January 1, 2024 and January 31, 2024.
+
+This is NOT a month-over-month comparison against December.
+You must compare revenue on:
+- January 1, 2024
+- January 31, 2024
+
+Definitions:
+
+1) Cohort (Strict Requirement)
+   Only include customers who had at least one active subscription on
+   January 1, 2024.
+   Customers who signed up after January 1 must be completely excluded.
+   Do NOT calculate or report "new revenue".
+
+2) Active Subscription Logic (Use Dates Only)
+   A subscription is active on a date if:
+     start_date <= that date
+     AND (end_date IS NULL OR end_date > that date)
+
+   Do NOT rely on the status column to determine activity.
+   Activity must be determined using dates only.
+
+3) Starting MRR (January 1, 2024)
+   For each cohort customer, sum monthly_price across all subscriptions
+   active on January 1.
+   Then sum across all cohort customers.
+
+4) Ending MRR (January 31, 2024)
+   For the SAME cohort customers, sum monthly_price across all subscriptions
+   active on January 31.
+   Then sum across the cohort.
+
+5) Revenue Movement Classification (Customer-Level)
+   For each cohort customer:
+
+   - Expansion:
+       If end_mrr > start_mrr,
+       expansion contribution = end_mrr − start_mrr
+
+   - Contraction:
+       If end_mrr < start_mrr AND end_mrr > 0,
+       contraction contribution = start_mrr − end_mrr
+
+   - Churn:
+       If end_mrr = 0,
+       churn contribution = start_mrr
+
+   Customers with equal start and end MRR contribute nothing.
+
+6) Reconciliation Constraint (Mandatory)
+   The final result must satisfy:
+
+     starting_mrr
+     + expansion_mrr
+     - contraction_mrr
+     - churn_mrr
+     = ending_mrr
+
+Requirements:
+
+- Return exactly one row.
+- Return exactly these five columns:
+    starting_mrr
+    expansion_mrr
+    contraction_mrr
+    churn_mrr
+    ending_mrr
+- Do NOT include additional rows.
+- Do NOT include additional columns.
+- Do NOT include new customer revenue.
+- Do NOT compare against December.
+- Do NOT use billing_period normalization unless strictly required.
+- Use monthly_price directly for MRR.
+
+Please:
+1) Briefly describe your approach in plain language.
+2) Provide the SQL query.
+3) Explain how your query guarantees reconciliation and cohort consistency.

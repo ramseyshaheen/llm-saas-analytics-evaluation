@@ -1,0 +1,1 @@
+Write a SQL query to calculate logo churn for January 2024 using the provided SaaS dataset.

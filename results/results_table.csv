@@ -1,0 +1,13 @@
+test_number,test_type,sql_executable,correct_output,correct_logic,result
+1,mrr_minimal,yes,no,no,fail
+2,mrr_explicit ,yes,no,no,fail
+3,mrr_detailed,yes,yes,yes,pass
+4,churn_minimal,yes,yes,no,fail
+5,churn_explicit,yes,yes,yes,pass
+6,churn_detailed,yes,yes,yes,pass
+7,nrr_minimal,yes,no,no,fail
+8,nrr_explicit,yes,no,no,fail
+9,nrr_explicit ,yes,yes,yes,pass
+10,decomposition_minimal,no,no,no,no
+11,decomposition_explicit,yes,no,no,no
+12,decomposition_detailed,yes,yes,yes,pass

@@ -1,0 +1,17 @@
+You are an analytics engineer working with a SaaS dataset.
+
+Tables:
+- subscriptions(subscription_id, customer_id, plan_id, start_date, end_date, status)
+
+Definition:
+- Logo churn for January 2024 is the percentage of customers who were active at the start of the month and had no active subscriptions at the end of the month.
+- The cohort consists of customers active on 2024-01-01.
+- A subscription is active on a date if:
+  - start_date <= the date, and
+  - end_date is NULL or end_date >= the date.
+- Customers with multiple subscriptions should be evaluated at the customer level.
+
+Please:
+1. Write the SQL query to calculate logo churn for January 2024.
+2. Explain the logic.
+3. State any assumptions.

@@ -1,0 +1,18 @@
+You are an analytics engineer working with a SaaS dataset.
+
+Tables:
+- subscriptions(subscription_id, customer_id, plan_id, start_date, end_date, status)
+- plans(plan_id, plan_name, monthly_price, billing_period)
+
+Definition:
+- Monthly Recurring Revenue (MRR) for January 2024 is the sum of monthly prices for all subscriptions that were active on 2024-01-01.
+- A subscription is considered active on a date if:
+  - start_date <= the date, and
+  - end_date is NULL or end_date >= the date.
+- Revenue should be calculated using plan monthly prices (not invoices).
+- Multiple active subscriptions per customer should be included.
+
+Please:
+1. Write the SQL query to calculate MRR.
+2. Briefly explain the logic.
+3. State any assumptions.

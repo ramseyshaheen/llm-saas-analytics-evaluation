@@ -1,0 +1,1 @@
+Write a SQL query to decompose the change in recurring revenue for January 2024 into expansion, contraction, and churn using the provided SaaS dataset.
