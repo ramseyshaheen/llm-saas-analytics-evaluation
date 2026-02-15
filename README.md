@@ -65,18 +65,22 @@ All outputs were:
 ## Failure Mode Examples:
 ### 1. Semantic Drift
 Issue: Undocumented assumptions added to queries
+
 Example: LLM added `status = 'active'` filter for historical revenue calculations, incorrectly excluding churned customers and underreporting revenue
 
 ### 2. Time Constraint Errors  
 Issue: Incorrect date boundary logic
+
 Example: Prompt specified "January 2024", but LLM used `start_date <= '2023-12-31'`, including a day of December records
 
 ### 3. Cohort Leakage
 Issue: Mixing customer cohorts in retention calculations
+
 Example: Including new customer revenue in NRR calculations
 
 ### 4. Output Structure Violations
 Issue: LLM attempting to expand scope beyond specifications
+
 Example: Adding unrequested aggregation rows, introducing complex UNION structures not needed for the task
 
 ## Conclusion
