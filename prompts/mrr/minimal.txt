@@ -1,7 +1,1 @@
-You are an analytics engineer working with a SaaS dataset.
-
-Tables:
-- subscriptions(subscription_id, customer_id, plan_id, start_date, end_date, status)
-- plans(plan_id, plan_name, monthly_price, billing_period)
-
 Write a SQL query to calculate Monthly Recurring Revenue (MRR) for January 2024 using the provided SaaS dataset.
