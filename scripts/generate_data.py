@@ -15,7 +15,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 random.seed(42)
 np.random.seed(42)
 
-# GENERATE PLANS (DETERMINISTIC)
+# GENERATE PLANS
 plans = pd.DataFrame([
     {"plan_id": 1, "plan_name": "Basic", "monthly_price": 50.00, "billing_period": "monthly"},
     {"plan_id": 2, "plan_name": "Pro", "monthly_price": 150.00, "billing_period": "monthly"},
@@ -24,7 +24,7 @@ plans = pd.DataFrame([
 
 plans.to_parquet(f"{OUTPUT_DIR}/plans.parquet", index=False)
 
-# GENERATE CUSTOMERS
+# GENERATE CUSTOMERS (customer size)
 segments = ["SMB", "Mid-Market", "Enterprise"]
 segment_weights = [0.6, 0.3, 0.1]
 
@@ -71,7 +71,7 @@ for _, customer in customers_df.iterrows():
     segment = customer["segment"]
     signup_date = pd.to_datetime(customer["signup_date"])
 
-    # Segment-based churn probability
+    # Segment-based churn probability (smaller customer will be more likely to churn)
     if segment == "Enterprise":
         churn_prob = 0.08
     elif segment == "Mid-Market":
@@ -164,7 +164,7 @@ for _, sub in subscriptions_df.iterrows():
 
         amount = plan_price_lookup[sub["plan_id"]]
 
-        # Segment-based payment behavior
+        # Segment-based payment behavior 
         customer_segment = customers_df.loc[
             customers_df["customer_id"] == sub["customer_id"], "segment"
         ].values[0]
