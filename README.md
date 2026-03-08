@@ -25,19 +25,18 @@ All data is stored as Parquet and queried via DuckDB.
 Model: Claude Sonnet 4.5
 
 Role: Analytics engineer working with a SaaS dataset (provided in all prompts).
-
 Context: Full schema with available tables and fields within the tables (provided in all prompts). 
 
-Minimal: Single-sentence task definition
+Minimal Prompt: Single-sentence task definition
 - Minimal business context or edge case handling
 
-Explicit: Typical business request detail
+Explicit Prompt: Typical business request detail
 - Definition section with business context
 - "Please:" section with output specifications
 - "Rules" section added for Tests 3-4
 - ~5 sentences total
 
-Detailed: Comprehensive specification
+Detailed Prompt: Comprehensive specification
 - Business definitions and framing
 - Explicit evaluation rules
 - Edge case requirements
@@ -82,7 +81,7 @@ Issue: LLM attempting to expand scope beyond specifications
 
 Example: Adding unrequested aggregation rows, introducing complex UNION structures not needed for the task
 
-## Conclusion
+# Conclusion
 Across 15 prompt variations and 4 core SaaS business tests, level of prompt detail significantly affected the quality of logical output. At the “Detailed” prompt level, Claude’s output returned the correct values for Tests 1 through 4. However, Test 3 and Test 4 can be considered logically fragile and not optimal. Across the majority of tests, “Minimal” and “Explicit” prompts produced unreliable output with significantly more room for inaccurate model assumptions and logical errors. 
 
 Only at the “Detailed” prompt level did outputs consisitently align with the defined business logic. However, to produce a “Detailed” level prompt, the user required a strong understanding of specific assumptions and risk points with the selected LLM and data set. This may be unrealistic for a user working with a specific LLM or data set for the first time. This creates a "cold-start" problem: users working with a new LLM or dataset for the first time may lack the domain knowledge needed to write sufficiently detailed prompts, leading to silently incorrect analytical outputs.
@@ -110,12 +109,12 @@ llm-saas-analytics-eval/
 - Test additional prompt engineering techniques 
 - Add automated retry/refinement loops
 
-## Additional Considerations
-# LLM API Token Limits
+# Additional Considerations
+## LLM API Token Limits
 - Increasing the token limit above reasonable limits for the complexity of prompts and tests did not materially change SQL logic or assumptions used in the LLM response.
 - Token limits only impacted detail of description and wording, and the LLM was not able to use additional tokens in budget to fix semantic errors.
 - Token limits will not be a test variable with a standard set at a limit of 1000 to 2000 API tokens depending on the specific test in the project.
 
-# LLM Incomplete Code Block Outputs
+## LLM Incomplete Code Block Outputs
 - In some cases, such as the Test #4 minimal prompt, the LLM would output a full response, but the response would not close out the code block.
 - To ensure responses in these cases could still be evaluated, I included additions in python to capture cases of incomplete code block outputs while still noting the occurrence as an error.
