@@ -25,22 +25,14 @@ All data is stored as Parquet and queried via DuckDB.
 Model: Claude Sonnet 4.5
 
 Role: Analytics engineer working with a SaaS dataset (provided in all prompts).
+
 Context: Full schema with available tables and fields within the tables (provided in all prompts). 
 
-Minimal Prompt: Single-sentence task definition
-- Minimal business context or edge case handling
+Minimal Prompt: Single-sentence task definition (1 subsection)
 
-Explicit Prompt: Typical business request detail
-- Definition section with business context
-- "Please:" section with output specifications
-- "Rules" section added for Tests 3-4
-- ~5 sentences total
+Explicit Prompt: Typical business request detail (~3 subsections)
 
-Detailed Prompt: Comprehensive specification
-- Business definitions and framing
-- Explicit evaluation rules
-- Edge case requirements
-- ~2x the content of Explicit prompts
+Detailed Prompt: Comprehensive specification (~5 subsections)
 
 All outputs were:
 1) Automatically extracted from LLM response
