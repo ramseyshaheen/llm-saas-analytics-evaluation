@@ -22,23 +22,21 @@ All data is stored as Parquet and queried via DuckDB.
 
 ## LLM Configuration
 
+All outputs were:
+1) Automatically extracted from LLM response
+2) Executed in DuckDB
+3) Compared against ground truth
+4) Logged as pass/fail with evaluation details
+
 Model: Claude Sonnet 4.5
 
 Role: Analytics engineer working with a SaaS dataset (provided in all prompts).
 
 Context: Full schema with available tables and fields within the tables (provided in all prompts). 
 
-Minimal Prompt: Single-sentence task definition (1 subsection)
-
-Explicit Prompt: Typical business request detail (~3 subsections)
-
-Detailed Prompt: Comprehensive specification (~5 subsections)
-
-All outputs were:
-1) Automatically extracted from LLM response
-2) Executed in DuckDB
-3) Compared against ground truth
-4) Logged as pass/fail with evaluation details 
+1) Minimal Prompt: Single-sentence task definition (1 subsection)
+2) Explicit Prompt: Typical business request detail (~3 subsections)
+3) Detailed Prompt: Comprehensive specification (~5 subsections)
 
 ## Metrics Tested
 
@@ -48,6 +46,9 @@ All outputs were:
 4) Revenue Decomposition (Expansion / Contraction / Churn)
 
 ## Key Results
+
+A total of 15 tests with the 4 key metrics at each level of prompt detail (the first 3 metrics ran the Explicit Prompt twice). 
+
 - Minimal prompts failed systematically, primarily due to semantic drift (incorrect cohort definitions, revenue leakage, or defaulting to generic SaaS logic).
 - Explicit prompts improved execution stability, but still exhibited logical inconsistencies under more complex metrics.
 - Detailed prompts consistently aligned with specification, preserved cohort integrity, and satisfied reconciliation constraints. However, LLM assumptions could still not be fully predicted in all cases which can still introduce logical errors in more complex tests.
