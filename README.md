@@ -41,13 +41,12 @@ Detailed: Comprehensive specification
 - Business definitions and framing
 - Explicit evaluation rules
 - Edge case requirements
-- Reconciliation constraints
 - ~2x the content of Explicit prompts
 
 All outputs were:
-1) Automatically extract SQL from LLM response
-2) Execute in DuckDB
-3) Compare against ground truth
+1) Automatically extracted from LLM response
+2) Executed in DuckDB
+3) Compared against ground truth
 4) Logged as pass/fail with evaluation details 
 
 ## Metrics Tested
@@ -111,12 +110,12 @@ llm-saas-analytics-eval/
 - Test additional prompt engineering techniques 
 - Add automated retry/refinement loops
 
-# Additional Considerations
-## LLM API Token Limits
+## Additional Considerations
+# LLM API Token Limits
 - Increasing the token limit above reasonable limits for the complexity of prompts and tests did not materially change SQL logic or assumptions used in the LLM response.
 - Token limits only impacted detail of description and wording, and the LLM was not able to use additional tokens in budget to fix semantic errors.
 - Token limits will not be a test variable with a standard set at a limit of 1000 to 2000 API tokens depending on the specific test in the project.
 
-## LLM Incomplete Code Block Outputs
+# LLM Incomplete Code Block Outputs
 - In some cases, such as the Test #4 minimal prompt, the LLM would output a full response, but the response would not close out the code block.
 - To ensure responses in these cases could still be evaluated, I included additions in python to capture cases of incomplete code block outputs while still noting the occurrence as an error.
