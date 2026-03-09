@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project evaluates the reliability of large language models (LLMs) in generating executable and logically correct SQL for realistic core SaaS metrics. Using synthetic SaaS subscription datasets designed to simulate part of a complex corporate database, I compare Claude Sonnet 4.5's generated SQL against a DuckDB ground-truth implementation across multiple financial and retention metrics. The primary goal is to measure the effectiveness, failure modes, and logical correctness of LLM in realistic analytical tasks under various levels of prompt detail.
+This project evaluates the reliability of large language models (LLMs) in generating executable and logically correct SQL for realistic core SaaS metrics. Using synthetic SaaS subscription datasets designed to simulate part of a complex corporate database, I compare Claude Sonnet 4.5's generated SQL against a DuckDB ground-truth implementation across multiple financial and retention metrics. The primary goal is to measure the effectiveness, failure modes, and logical correctness of LLM in realistic corporate analytical tasks under various levels of prompt detail.
 
 ## Dataset
 Synthetic SaaS subscription dataset generated in Python with:
@@ -104,7 +104,7 @@ llm-saas-analytics-eval/
 Setup & Usage
 
 1) Clone the repo and install dependencies:
-git clone https://github.com/your-username/llm-saas-analytics-eval.git
+git clone https://github.com/ramseyshaheen/llm-saas-analytics-evaluation.git
 pip install -r requirements.txt
 
 2) Set your Anthropic API key as an environment variable:
@@ -121,6 +121,8 @@ python scripts/test_claude_api.py
 
 6) Evaluate results against ground truth:
 python scripts/evaluate_metric.py
+
+Results are logged to results/results_table.csv and results/evaluation_notes.md.
 
 ## Additional Considerations
 ### LLM API Token Limits
