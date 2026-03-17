@@ -4,8 +4,6 @@
 
 This project evaluates the reliability of large language models (LLMs) in generating executable and logically correct SQL for realistic core SaaS metrics. Using synthetic SaaS subscription datasets designed to simulate part of a complex corporate database, I compare Claude Sonnet 4.5's generated SQL against a DuckDB ground-truth implementation across multiple financial and retention metrics. The primary goal is to measure the effectiveness, failure modes, and logical correctness of LLM in realistic corporate analytical tasks under various levels of prompt detail.
 
----
-
 ## 2. Dataset
 Synthetic SaaS subscription dataset generated in Python with:
 
@@ -17,8 +15,6 @@ Synthetic SaaS subscription dataset generated in Python with:
 - Realistic churn, expansion, and contract timeline behavior
 
 All data is stored as Parquet and queried via DuckDB.
-
----
 
 ## 3. LLM Configuration
 
@@ -45,8 +41,6 @@ Context: Full schema with available tables and fields within the tables (provide
 3) Net Revenue Retention (NRR)
 4) Revenue Decomposition (Expansion / Contraction / Churn)
 
----
-
 ## 4. Key Results
 
 A total of 15 tests with the 4 key metrics at each level of prompt detail (the first 3 metrics ran the Explicit Prompt twice). 
@@ -54,8 +48,6 @@ A total of 15 tests with the 4 key metrics at each level of prompt detail (the f
 - Minimal prompts failed systematically, primarily due to semantic drift (incorrect cohort definitions, revenue leakage, or defaulting to generic SaaS logic).
 - Explicit prompts improved execution stability, but still exhibited logical inconsistencies under more complex metrics.
 - Detailed prompts consistently aligned with specification, preserved cohort integrity, and satisfied reconciliation constraints. However, LLM assumptions could still not be fully predicted in all cases which can still introduce logical errors in more complex tests.
-
----
 
 ## 5. Failure Mode Examples:
 ### 1) Semantic Drift
@@ -78,21 +70,15 @@ Issue: LLM attempting to expand scope beyond specifications
 
 Example: Adding unrequested aggregation rows, introducing complex UNION structures not needed for the task
 
----
-
 ## 6. Conclusion
 Across 15 prompt variations and 4 core SaaS business tests, level of prompt detail significantly affected the quality of logical output. At the “Detailed” prompt level, Claude’s output returned the correct values for Tests 1 through 4. However, Test 3 and Test 4 can be considered logically fragile and not optimal. Across the majority of tests, “Minimal” and “Explicit” prompts produced unreliable output with significantly more room for inaccurate model assumptions and logical errors. 
 
 Only at the “Detailed” prompt level did outputs consistently align with the defined business logic. However, to produce a “Detailed” level prompt, the user required a strong understanding of specific assumptions and risk points with the selected LLM and data set. This may be unrealistic for a user working with a specific LLM or data set for the first time. This creates a "cold-start" problem: users working with a new LLM or dataset for the first time may lack the domain knowledge needed to write sufficiently detailed prompts, leading to silently incorrect analytical outputs.
 
----
-
 ## 7. Tech Stack
 - Python (data generation, evaluation framework)
 - DuckDB (SQL execution)
 - Anthropic Claude Sonnet 4.5 API (LLM API)
-
----
 
 ## 8. Repository Structure
 llm-saas-analytics-eval/
@@ -107,14 +93,10 @@ llm-saas-analytics-eval/
 
 └── saas_analytics.duckdb
 
----
-
 ## 9. Potential Next Steps
 - Expand to additional LLM APIs (ChatGPT, Gemini)
 - Test additional prompt engineering techniques 
 - Add automated retry/refinement loops
-
----
 
 ## 10. How to Run 
 Setup & Usage
@@ -139,8 +121,6 @@ python scripts/test_claude_api.py
 python scripts/evaluate_metric.py
 
 Results are logged to results/results_table.csv and results/evaluation_notes.md.
-
----
 
 ## 11. Additional Considerations
 ### LLM API Token Limits
